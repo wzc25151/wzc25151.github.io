@@ -1,0 +1,626 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="wzc25151-博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="分享一个加载过渡的动画特效，按照惯例大家先看下动画效果。
+
+在界面数据加载完之前给用户一个过度动画。
+在MainActivity中模拟这样的场景，用一个动画进场View覆盖一个懒加载的内容View。
+MainActivity如下
+1234567891011121314151617181920212223    @Override    protected void onCreate(Bundle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="过渡动画特效">
+<meta property="og:url" content="wzc25151.github.io/2017/02/24/过度动画特效/index.html">
+<meta property="og:site_name" content="wzc25151-博客blog">
+<meta property="og:description" content="分享一个加载过渡的动画特效，按照惯例大家先看下动画效果。
+
+在界面数据加载完之前给用户一个过度动画。
+在MainActivity中模拟这样的场景，用一个动画进场View覆盖一个懒加载的内容View。
+MainActivity如下
+1234567891011121314151617181920212223    @Override    protected void onCreate(Bundle">
+<meta property="og:image" content="wzc25151.github.io/images/img/2017-2-24.gif">
+<meta property="og:image" content="wzc25151.github.io/images/img/2017-2-24.png">
+<meta property="og:updated_time" content="2017-02-24T03:38:07.558Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="过渡动画特效">
+<meta name="twitter:description" content="分享一个加载过渡的动画特效，按照惯例大家先看下动画效果。
+
+在界面数据加载完之前给用户一个过度动画。
+在MainActivity中模拟这样的场景，用一个动画进场View覆盖一个懒加载的内容View。
+MainActivity如下
+1234567891011121314151617181920212223    @Override    protected void onCreate(Bundle">
+<meta name="twitter:image" content="wzc25151.github.io/images/img/2017-2-24.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 过渡动画特效 | wzc25151-博客blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?2cb137af2645bd37205e050a206b00be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wzc25151-博客blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">wzc25151</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                过渡动画特效
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-24T11:11:07+08:00" content="2017-02-24">
+              2017-02-24
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/24/过度动画特效/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/24/过度动画特效/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>分享一个加载过渡的动画特效，按照惯例大家先看下动画效果。</p>
+<p><img src="/images/img/2017-2-24.gif" alt=""></p>
+<p>在界面数据加载完之前给用户一个过度动画。</p>
+<p>在MainActivity中模拟这样的场景，用一个动画进场View覆盖一个懒加载的内容View。</p>
+<p>MainActivity如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        frameLayout = <span class="keyword">new</span> FrameLayout(<span class="keyword">this</span>);</span><br><span class="line">        ContentView contentView = <span class="keyword">new</span> ContentView(<span class="keyword">this</span>);</span><br><span class="line">        frameLayout.addView(contentView);</span><br><span class="line">        splashView = <span class="keyword">new</span> SplashView(<span class="keyword">this</span>);</span><br><span class="line">        frameLayout.addView(splashView);</span><br><span class="line"></span><br><span class="line">        setContentView(frameLayout);</span><br><span class="line">        <span class="comment">//模拟5s的数据加载（显示数据加载完成前的动画）</span></span><br><span class="line">        startSplashDataLoad();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startSplashDataLoad</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        handler.postDelayed(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                splashView.splashDisappear();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="number">5000</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>展示内容的ContentView用ImageView模拟。<br>ContentView如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContentView</span> <span class="keyword">extends</span> <span class="title">ImageView</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ContentView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">        <span class="keyword">this</span>.setImageResource(R.mipmap.qinuo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重点的动画部分写在SplashView中，如下</p>
+<p>定义变量及初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> mSplashBgColor = Color.WHITE;<span class="comment">//整体的背景颜色</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mRotationRadius = <span class="number">120</span>;<span class="comment">//旋转动画中大圆圈的半径</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mCircleRadius = <span class="number">18</span>;<span class="comment">//旋转动画中每个小圆圈的半径</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> mRotationDuration = <span class="number">2000</span>;<span class="comment">//大圆圈旋转一次动画的时间</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] mCircleColors;<span class="comment">//小圆圈的颜色</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span> mSplashDuration = <span class="number">1000</span>;<span class="comment">//聚合、扩散动画的持续时间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mHoleRadius = <span class="number">0F</span>;<span class="comment">//扩散动画空心圆的空心部分的初始半径</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mCurrentRotationAngle = <span class="number">0F</span>;<span class="comment">//旋转动画中大圆圈的当前旋转角度</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mCurrentRotationRadius = mRotationRadius;<span class="comment">//扩散动画空心圆的半径</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Paint mPaint = <span class="keyword">new</span> Paint();<span class="comment">//绘制圆的画笔</span></span><br><span class="line"><span class="keyword">private</span> Paint mPaintBackground = <span class="keyword">new</span> Paint();<span class="comment">//绘制背景的画笔</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mCenterX;<span class="comment">//屏幕中心点的x坐标</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mCenterY;<span class="comment">//屏幕中心点的y坐标</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">float</span> mDiagonalDist;<span class="comment">//屏幕对角线长度的一半</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">SplashView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(context);</span><br><span class="line">    init();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mPaint.setAntiAlias(<span class="keyword">true</span>);<span class="comment">//设置画笔抗锯齿，默认实心</span></span><br><span class="line"></span><br><span class="line">    mPaintBackground.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">    mPaintBackground.setStyle(Paint.Style.STROKE);<span class="comment">//用来绘制空心圆</span></span><br><span class="line">    mPaintBackground.setColor(mSplashBgColor);</span><br><span class="line"></span><br><span class="line">    mCircleColors = getContext().getResources().getIntArray(R.array.splash_circle_colors);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSizeChanged</span><span class="params">(<span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> oldw, <span class="keyword">int</span> oldh)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onSizeChanged(w, h, oldw, oldh);</span><br><span class="line">    mCenterX = w / <span class="number">2f</span>;</span><br><span class="line">    mCenterY = h / <span class="number">2f</span>;</span><br><span class="line"></span><br><span class="line">    mDiagonalDist = (<span class="keyword">float</span>) Math.sqrt((w * w + h * h) / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从之前图片中我们可以看见，这个动画可以分为3个状态。</p>
+<pre><code>1.旋转  RotationState
+2.聚合  MergingState
+3.扩散  ExpandState
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mState == <span class="keyword">null</span>) &#123;</span><br><span class="line">        mState = <span class="keyword">new</span> RotationState();</span><br><span class="line">    &#125;</span><br><span class="line">    mState.drawState(canvas);</span><br><span class="line">    <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">splashDisappear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> SplashState mState;<span class="comment">//状态表示当前执行的是三个动画中的哪一个动画</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SplashState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">drawState</span><span class="params">(Canvas canvas)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">RotationState</span> <span class="keyword">extends</span> <span class="title">SplashState</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawState</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//绘制动画</span></span><br><span class="line">        drawBackground(canvas);</span><br><span class="line">        drawCircle(canvas);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>旋转动画的实现可以考虑这样的思路，在一个看不见的大圆里按规律分散着多个小圆，这些<strong>小圆会随着大圆的中心旋转而旋</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">private</span> ValueAnimator mAnimator;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">RotationState</span> <span class="keyword">extends</span> <span class="title">SplashState</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">RotationState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">//值域旋转一周，0-2π</span></span><br><span class="line">            mAnimator = ValueAnimator.ofFloat(<span class="number">0F</span>, (<span class="keyword">float</span>) Math.PI * <span class="number">2</span>);</span><br><span class="line">            mAnimator.setInterpolator(<span class="keyword">new</span> LinearInterpolator());<span class="comment">//线性差值器，使动画看起来更平滑</span></span><br><span class="line">            mAnimator.addUpdateListener(<span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</span><br><span class="line">                    <span class="comment">//角度变化</span></span><br><span class="line">                    mCurrentRotationAngle = (<span class="keyword">float</span>) animation.getAnimatedValue();</span><br><span class="line">                    <span class="comment">//请求绘制-&gt;onDraw()</span></span><br><span class="line">                    postInvalidate();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            mAnimator.setDuration(mRotationDuration);</span><br><span class="line">            mAnimator.setRepeatCount(ValueAnimator.INFINITE);<span class="comment">//循环动画</span></span><br><span class="line">            mAnimator.start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            mAnimator.cancel();</span><br><span class="line"><span class="comment">//            mAnimator.end();</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawState</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//绘制动画</span></span><br><span class="line">            drawBackground(canvas);</span><br><span class="line">            drawCircle(canvas);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawBackground</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">            <span class="comment">//默认绘制背景</span></span><br><span class="line">            canvas.drawColor(mSplashBgColor);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 绘制小圆圈</span><br><span class="line">     *</span><br><span class="line">     * <span class="doctag">@param</span> canvas</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawCircle</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mCircleColors.length; i++) &#123;</span><br><span class="line">            <span class="comment">//计算每个小圆圈当前的角度</span></span><br><span class="line">            <span class="keyword">float</span> rotationAngle = (<span class="keyword">float</span>) (<span class="number">2</span> * Math.PI / mCircleColors.length);</span><br><span class="line">            <span class="keyword">double</span> angle = i * rotationAngle + mCurrentRotationAngle;</span><br><span class="line">            <span class="comment">//x=r*cos(a),y=r*sin(a)计算不同角度时小圆圈在大圆圈上的坐标</span></span><br><span class="line">            <span class="comment">//因为Android绘制时原点是左上角，所以加上屏幕一半</span></span><br><span class="line">            <span class="keyword">float</span> cx = (<span class="keyword">float</span>) (mCurrentRotationRadius * Math.cos(angle) + mCenterX);</span><br><span class="line">            <span class="keyword">float</span> cy = (<span class="keyword">float</span>) (mCurrentRotationRadius * Math.sin(angle) + mCenterY);</span><br><span class="line">            mPaint.setColor(mCircleColors[i]);</span><br><span class="line">            canvas.drawCircle(cx, cy, mCircleRadius, mPaint);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>聚合动画出现的时机应该是后台数据资源加载完成，内容界面可以展示时，<strong>小圆圈随着大圆圈半径的缩小</strong>而聚合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">splashDisappear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mState != <span class="keyword">null</span> &amp;&amp; mState <span class="keyword">instanceof</span> RotationState) &#123;</span><br><span class="line">        RotationState rotationState = (RotationState) mState;</span><br><span class="line">        rotationState.cancel();</span><br><span class="line">        <span class="comment">//让旋转动画停止，并执行聚合动画</span></span><br><span class="line">        post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                mState = <span class="keyword">new</span> MergingState();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MergingState</span> <span class="keyword">extends</span> <span class="title">SplashState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MergingState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mAnimator = <span class="keyword">new</span> ValueAnimator().ofFloat(<span class="number">0</span>, mRotationRadius);</span><br><span class="line">        mAnimator.setInterpolator(<span class="keyword">new</span> OvershootInterpolator(<span class="number">5F</span>));<span class="comment">//抖动</span></span><br><span class="line">        mAnimator.addUpdateListener(<span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</span><br><span class="line">                mCurrentRotationRadius = (<span class="keyword">float</span>) animation.getAnimatedValue();</span><br><span class="line">                postInvalidate();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//监听动画结束，执行扩散动画</span></span><br><span class="line">        mAnimator.addListener(<span class="keyword">new</span> AnimatorListenerAdapter() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationEnd</span><span class="params">(Animator animation)</span> </span>&#123;</span><br><span class="line">                mState = <span class="keyword">new</span> ExpandState();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        mAnimator.setDuration(mSplashDuration);</span><br><span class="line">        mAnimator.reverse();<span class="comment">//动画反转，让动画先抖动后缩小</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawState</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        drawBackground(canvas);</span><br><span class="line">        drawCircle(canvas);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当聚合动画执行完毕后立即执行扩散动画，扩散可以看作是一个<strong>粗粗的空心圆由屏幕中心点渐渐变大</strong>的动画</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ExpandState</span> <span class="keyword">extends</span> <span class="title">SplashState</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ExpandState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//空心圆中空心部分的半径为变化值</span></span><br><span class="line">        mAnimator = ValueAnimator.ofFloat(<span class="number">0</span>, mDiagonalDist);</span><br><span class="line">        mAnimator.addUpdateListener(<span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</span><br><span class="line">                mHoleRadius = (<span class="keyword">float</span>) animation.getAnimatedValue();</span><br><span class="line">                postInvalidate();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        mAnimator.setDuration(mSplashDuration);</span><br><span class="line">        mAnimator.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawState</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        drawBackground(canvas);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawBackground</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//空心圆的空心部分的半径大于0时表示在执行扩散动画</span></span><br><span class="line">    <span class="keyword">if</span> (mHoleRadius &gt; <span class="number">0F</span>) &#123;</span><br><span class="line">        <span class="comment">//计算画笔的宽度</span></span><br><span class="line">        <span class="keyword">float</span> strokeWidth = mDiagonalDist - mHoleRadius;</span><br><span class="line">        mPaintBackground.setStrokeWidth(strokeWidth);</span><br><span class="line">        <span class="comment">//整个空心圆的半径=空心部分的半径加上填色部分的半径</span></span><br><span class="line">        <span class="keyword">float</span> radius = mHoleRadius + strokeWidth / <span class="number">2</span>;</span><br><span class="line">        canvas.drawCircle(mCenterX, mCenterY, radius, mPaintBackground);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//默认绘制背景</span></span><br><span class="line">        canvas.drawColor(mSplashBgColor);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于扩散动画空心圆的半径的计算没明白可以看我画的这张图<br><img src="/images/img/2017-2-24.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/01/one/" rel="next" title="one">
+                <i class="fa fa-chevron-left"></i> one
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/02/24/过度动画特效/"
+     data-title="过渡动画特效"
+     data-content=""
+     data-url="wzc25151.github.io/2017/02/24/过度动画特效/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/24/过度动画特效/"
+           data-title="过渡动画特效" data-url="wzc25151.github.io/2017/02/24/过度动画特效/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Wang Xiangbo" />
+          <p class="site-author-name" itemprop="name">Wang Xiangbo</p>
+          <p class="site-description motion-element" itemprop="description">wzc25151-博客blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wzc25151" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ioer5" target="_blank">
+                  
+                    <i class="fa fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/wzc25151" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.wzc25151.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Personal Site
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wang Xiangbo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/vendors/jquery-scrollintoview/jquery.scrollintoview.min.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wzc25151"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
