@@ -1,0 +1,7 @@
+[
+null,
+{"id":1,"list":[{"code":111,"indent":0,"parameters":[0,11,0]},{"code":121,"indent":1,"parameters":[11,11,1]},{"code":136,"indent":1,"parameters":[1]},{"code":101,"indent":1,"parameters":["",0,0,2]},{"code":401,"indent":1,"parameters":["主角一行退出了潜行状态。"]},{"code":0,"indent":1,"parameters":[]},{"code":411,"indent":0,"parameters":[]},{"code":121,"indent":1,"parameters":[11,11,0]},{"code":136,"indent":1,"parameters":[0]},{"code":101,"indent":1,"parameters":["",0,0,2]},{"code":401,"indent":1,"parameters":["主角一行进入了潜行状态。"]},{"code":0,"indent":1,"parameters":[]},{"code":412,"indent":0,"parameters":[]},{"code":0,"indent":0,"parameters":[]}],"name":"禁止遇敌","switchId":11,"trigger":0},
+{"id":2,"list":[{"code":125,"indent":0,"parameters":[0,0,10000]},{"code":101,"indent":0,"parameters":["",0,0,2]},{"code":401,"indent":0,"parameters":["金币持有数增加10000\\G。\\$"]},{"code":0,"indent":0,"parameters":[]}],"name":"金币增长","switchId":1,"trigger":0},
+{"id":3,"list":[{"code":314,"indent":0,"parameters":[0,0]},{"code":221,"indent":0,"parameters":[]},{"code":230,"indent":0,"parameters":[60]},{"code":222,"indent":0,"parameters":[]},{"code":0,"indent":0,"parameters":[]}],"name":"旅馆睡觉","switchId":1,"trigger":0},
+{"id":4,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0}
+]
