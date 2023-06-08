@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>佛牌打印</title>
+</head>
+
+<body>
+    <div style="display: flex;">
+
+
+
+        <div id="inner">
+            <div id="bgDiv"
+                style="display: flex; width: 354px;height: 1020px;background-image: url(../MemorialTabletPrint/images/chaodu.png);">
+
+                <!--阳上人-->
+                <div id="yangshangren"
+                    style="width: 55px; height: 300px;writing-mode: vertical-rl;overflow: auto; padding-top: 500px;padding-right: 20px; border: 0px solid red;font-size: 24px ;">
+                    阳上人
+                </div>
+                <!--中间-->
+                <div id="zhongjian"
+                    style="display: flex;  width: 200px; height: 300px;writing-mode: vertical-lr;padding-top: 400px; border: 0px solid blue;font-size: 24px ;">
+                    <dl>
+                        <dt id="name1">
+                            中间人1
+                        </dt>
+                        <dt id="name2">
+                            中间人2
+                        </dt>
+                        <dt id="name3">
+                            中间人3
+                        </dt>
+                        <dt id="name4">
+                            中间人4
+                        </dt>
+                        <dt id="name5">
+                            中间人5
+                        </dt>
+                    </dl>
+
+                </div>
+
+                <!--地址-->
+                <div id="addr"
+                    style="width: 75px; height: 600px;writing-mode: vertical-rl;padding-top: 230px; padding-right: 15px; border: 0px solid red;font-size: 24px ;">
+                    地址
+                </div>
+            </div>
+
+
+        </div>
+        <!--控制台-->
+        <div style=" font-size: 20px;padding-top: 50px; padding-left: 50px;" >
+            控制台
+
+            <div>
+                参照背景 <input type="radio" onclick="bgImg(0)" name="参照背景" value="无">无
+                <!--
+                <input type="radio" name="参照背景" value=祈福">祈福
+                -->
+                <input type="radio" onclick="bgImg(1)"  name="参照背景" checked="checked" value="超度">超度
+            </div>
+            <div>
+                地址 <input id="addrText" type="text" oninput="addrOnInput()" size="10" value="地址" />
+            </div>
+
+
+            <div>
+                中间人1
+                <input id="nameText1" type="text" oninput="nameOnInput(1)" size="10" value="中间人1" />
+            </div>
+            <div>
+                中间人2
+                <input id="nameText2" type="text" oninput="nameOnInput(2)" size="10" value="中间人2" />
+            </div>
+            <div>
+                中间人3
+                <input id="nameText3" type="text" oninput="nameOnInput(3)" size="10" value="中间人3" />
+            </div>
+            <div>
+                中间人4
+                <input id="nameText4" type="text" oninput="nameOnInput(4)" size="10" value="中间人4" />
+            </div>
+            <div>
+                中间人5
+                <input id="nameText5" type="text" oninput="nameOnInput(5)" size="10" value="中间人5" />
+            </div>
+            <div>
+                阳上人 <input id="yangshangrenText" type="text" oninput="yangshangrenOnInput()" size="10" value="阳上人" />
+            </div>
+            <!--
+            合家，勾选框
+            -->
+            <div>
+
+
+
+                <input type="button" onclick="iframePrint()" value="打印">
+                <input type="button" id="btn" value="新窗口打印">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--通过iframe进行打印-->
+    <iframe id="iframe" name="iframeName" style="width: 354px;height: 1020px;display:none;"></iframe>
+</body>
+
+<script>
+
+
+
+    var btn = document.getElementById("btn");
+    btn.onclick = function () {
+        var newWindow = window.open('', '_blank', 'width=1,height=1,top=10000,left=10000');
+        var html = document.getElementById("inner").innerHTML;// 这里的html可由别处传参，也可自己去接口获取
+        newWindow.document.write(html);
+        newWindow.document.close();
+        newWindow.print();
+        newWindow.close();
+    };
+
+    function bgImg(num){
+if(num==0){
+    document.getElementById("bgDiv").style.backgroundImage = "";
+}else{
+    document.getElementById("bgDiv").style.backgroundImage = "url(../MemorialTabletPrint/images/chaodu.png)";
+}
+    }
+
+    function yangshangrenOnInput() {
+        var yangshangrenTextStr = document.getElementById("yangshangrenText").value;
+        document.getElementById("yangshangren").innerText = yangshangrenTextStr;
+    }
+
+    function nameOnInput(num) {
+        var curId = "nameText" + num;
+        var nameTextStr = document.getElementById(curId).value;
+
+        document.getElementById("name" + num).innerText = nameTextStr;
+
+    }
+
+    function addrOnInput() {
+        var addrTextStr = document.getElementById("addrText").value;
+        document.getElementById("addr").innerText = addrTextStr;
+    }
+
+    function iframePrint() {
+        var printHtml = document.getElementById("inner").innerHTML;
+        document.getElementById("iframe").contentDocument.body.innerHTML = printHtml;
+        window.frames["iframeName"].print();
+    }
+
+</script>
+
+</html>
