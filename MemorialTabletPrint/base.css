@@ -1,0 +1,59 @@
+html,
+body,
+div,
+span,
+p,
+a,
+img
+/*,input */
+{
+    margin: 0;
+    padding: 0;
+    border: 0;    
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box    
+}
+
+html,
+body {
+    height: 100%;
+}
+/*
+html {
+    line-height: 1;
+    font-size: 62.5%;
+    font-family: Arial, "Microsoft YaHei"
+}
+
+body {
+    font-size: 1.6rem;
+    color: black
+}
+
+div,
+span,
+p,
+a,
+input {
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit
+}
+
+a {
+    text-decoration: none
+}
+*/
+.clear {
+    clear: both
+}
+
+.label {
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis
+}

@@ -1,230 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>佛牌打印</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>简易牌位打印</title>
+    <link type="text/css" rel="styleSheet" href="base.css" />
+    <link type="text/css" rel="styleSheet" href="index.css" />
 </head>
 
 <body>
-    <div style="display: flex;">
+    <div id="container">
+        <div id="contentPanel">
 
-
-
-        <div id="inner">
-            <div id="bgDiv"
-                style="display: flex; width: 460px;height: 1326px;background-image: url(../MemorialTabletPrint/images/chaodu.png)   ;background-size: cover;">
-
-                <!--阳上人-->
-                <div
-                    style="width: 20%; height: 350px; text-align: center; overflow: auto; margin-top: 650px;padding-right: 0px; border: 0px solid red;font-size: 32px ;">
-
-                    <span id="yangshangren" style="writing-mode: vertical-rl; "> 阳上人</span>
-                </div>
-                <!--中间-->
-                <div
-                    style="margin-top: 470px;width: 60%;height: 450px;text-align: center;writing-mode: vertical-lr;border: 0px solid blue;font-size: 32px; ">
-
-                    <div style="width: 20%; ">
-                        <span  id="name1" style=" "> 中间人1</span>
-                    </div>
-                    <div style="width: 20%;">
-                        <span id="name2" style="  "> 中间人2</span>
-                    </div>
-                    <div style="width: 20%;">
-                        <span id="name3" style="  "> 中间人3</span>
-                    </div>
-                    <div style="width: 20%;">
-                        <span id="name4" style="  "> 中间人4</span>
-                    </div>
-                    <div style="width: 20%;">
-                        <span id="name5" style="  "> 中间人5</span>
-                    </div>
-
-
-                    <!--
-
-
- <dl>
-                        <dt style="width: 20%;">
-                            <span id="name1" style=" writing-mode: vertical-rl; "> 中间人1</span>
-                        </dt>
-                        <dt style="width: 20%;">
-                            <span id="name2" style=" writing-mode: vertical-rl; "> 中间人2</span>
-                        </dt>
-                        <dt style="width: 20%;">
-                            <span id="name3" style=" writing-mode: vertical-rl; "> 中间人3</span>
-                        </dt>
-                        <dt style="width: 20%;">
-                            <span id="name4" style=" writing-mode: vertical-rl; "> 中间人4</span>
-                        </dt>
-                        <dt style="width: 20%;">
-                            <span id="name5" style=" writing-mode: vertical-rl; "> 中间人5</span>
-                        </dt>
-                    </dl>
-                   -->
-
-
-                </div>
-
-                <!--地址-->
-                <div
-                    style="width: 20%; height: 900px;overflow:hidden;  text-align: center;margin-top: 250px;  border: 0px solid red;font-size: 32px ;">
-
-                    <span id="addr" style=" writing-mode: vertical-rl; "> 地址</span>
-                </div>
+            <div id="ysrPanel">
+                <div id="ysrTopPart"> 陽上</div>
+                <div id="ysrName">阳上人名字</div>
+                <div id="ysrBottomPart">敬薦</div>
             </div>
 
+            <div id="namePanel">
+                <div id="namePart">
+                    <div id="nameColumn1" class="nameColumn">列1</div>
+                    <div id="nameColumn2" class="nameColumn">列2</div>
+                    <div id="nameColumn3" class="nameColumn">列3</div>
+                    <div id="nameColumn4" class="nameColumn">列4</div>
+                    <div id="nameColumn5" class="nameColumn">列5</div>
+                </div>
+                <!--                <div id="familyPart">阖家</div> -->
+            </div>
 
+            <div id="addrPanel">
+                <div id="addr">地址</div>
+            </div>
         </div>
+
+
         <!--控制台-->
-        <div style=" font-size: 20px;padding-top: 50px; padding-left: 50px;">
+        <div class="no-print" id="consolePanel">
             控制台
 
-            <div style="margin-top: 10px;">
-                参照背景 <input type="radio" onclick="bgImg(0)" name="参照背景" value="无">无
-                <!--
-                <input type="radio" name="参照背景" value=祈福">祈福
-                -->
-                <input type="radio" onclick="bgImg(1)" name="参照背景" checked="checked" value="超度">超度
+            <div class="option">
+                参照背景
+                <input type="radio" onclick="switchBgImg(0)" name="参照背景" value="无">无
+                <input type="radio" onclick="switchBgImg(1)" name="参照背景" checked="checked" value="超度1">超度1
+                <input type="radio" onclick="switchBgImg(2)" name="参照背景" value="超度2">超度2
+                <!--                <input type="radio" name="参照背景" value=祈福">祈福                -->
             </div>
-            <div style="margin-top: 10px;">
-                阳上人 <input id="yangshangrenText" type="text" oninput="yangshangrenOnInput()" size="10" value="阳上人" />
-                字体<input id="yangshangrenFontSize" type="text" oninput="yangshangrenFixFontSize()" size="10"
-                    value="32" />
+
+            <div class="option">
+                <div>
+                    阳上人
+                    <input id="ysrNameInput" type="text" oninput="ysrNameOnInput()" size="10" value="阳上人名字" />
+                    字体
+                    <input id="ysrSizeInput" type="text" oninput="ysrSizeOnInput()" size="10" value="32" />
+                </div>
+                <div>
+                    显示陽上和敬薦
+                    <input type="radio" onclick="switchYsr(0)" name="显示陽上和敬薦" value="否">否
+                    <input type="radio" onclick="switchYsr(1)" name="显示陽上和敬薦" checked="checked" value="是">是
+                </div>
+            </div>
+
+            <div class="option">
+                <div>
+                    牌主1
+                    <input id="nameColumnInput1" type="text" oninput="nameColumnOnInput(1)" size="10" value="列1" />
+                    字体
+                    <input id="nameColumnSizeInput1" type="text" oninput="nameColumnSizeOnInput(1)" size="10"
+                        value="32" />
+                </div>
+                <div>
+                    牌主2
+                    <input id="nameColumnInput2" type="text" oninput="nameColumnOnInput(2)" size="10" value="列2" />
+                    字体
+                    <input id="nameColumnSizeInput2" type="text" oninput="nameColumnSizeOnInput(2)" size="10"
+                        value="32" />
+                </div>
+                <div>
+                    牌主3
+                    <input id="nameColumnInput3" type="text" oninput="nameColumnOnInput(3)" size="10" value="列3" />
+                    字体
+                    <input id="nameColumnSizeInput3" type="text" oninput="nameColumnSizeOnInput(3)" size="10"
+                        value="32" />
+                </div>
+                <div>
+                    牌主4
+                    <input id="nameColumnInput4" type="text" oninput="nameColumnOnInput(4)" size="10" value="列4" />
+                    字体
+                    <input id="nameColumnSizeInput4" type="text" oninput="nameColumnSizeOnInput(4)" size="10"
+                        value="32" />
+                </div>
+                <div>
+                    牌主5
+                    <input id="nameColumnInput5" type="text" oninput="nameColumnOnInput(5)" size="10" value="列5" />
+                    字体
+                    <input id="nameColumnSizeInput5" type="text" oninput="nameColumnSizeOnInput(5)" size="10"
+                        value="32" />
+                </div>
             </div>
 
 
-
-
-            <div style="margin-top: 10px;">
-                中间人1
-                <input id="nameText1" type="text" oninput="nameOnInput(1)" size="10" value="中间人1" />
-                字体<input id="zhongjianrenFontSize1" type="text" oninput="zhongjianrenFixFontSize(1)" size="10"
-                    value="32" />
-            </div>
-            <div>
-                中间人2
-                <input id="nameText2" type="text" oninput="nameOnInput(2)" size="10" value="中间人2" />
-                字体<input id="zhongjianrenFontSize2" type="text" oninput="zhongjianrenFixFontSize(2)" size="10"
-                    value="32" />
-            </div>
-            <div>
-                中间人3
-                <input id="nameText3" type="text" oninput="nameOnInput(3)" size="10" value="中间人3" />
-                字体<input id="zhongjianrenFontSize3" type="text" oninput="zhongjianrenFixFontSize(3)" size="10"
-                    value="32" />
-            </div>
-            <div>
-                中间人4
-                <input id="nameText4" type="text" oninput="nameOnInput(4)" size="10" value="中间人4" />
-                字体<input id="zhongjianrenFontSize4" type="text" oninput="zhongjianrenFixFontSize(4)" size="10"
-                    value="32" />
-            </div>
-            <div>
-                中间人5
-                <input id="nameText5" type="text" oninput="nameOnInput(5)" size="10" value="中间人5" />
-                字体<input id="zhongjianrenFontSize5" type="text" oninput="zhongjianrenFixFontSize(5)" size="10"
-                    value="32" />
-            </div>
-
-            <div style="margin-top: 10px;">
-                地址 <input id="addrText" type="text" oninput="addrOnInput()" size="10" value="地址" />
-                字体<input id="addrFontSize" type="text" oninput="addrFixFontSize()" size="10" value="32" />
+            <div class="option">
+                地址
+                <input id="addrInput" type="text" oninput="addrOnInput()" size="10" value="地址" />
+                字体
+                <input id="addrSizeInput" type="text" oninput="addrSizeOnInput()" size="10" value="32" />
             </div>
             <!--
             合家，勾选框
             -->
-            <div style="margin-top: 10px;">
+            <div class="option">
 
 
 
-                <input type="button" onclick="iframePrint()" value="打印">
-                <input type="button" id="btn" value="新窗口打印">
+                <button onclick="window.print()">打印</button>
             </div>
 
-            <div style="margin-top: 10px;">
+            <div class="option">
 
-                一些说明：<br/>
-                1.打印时注意打印预览的参数；<br/>
-                2.打印时不要勾选背景、页眉和页脚。
+                一些说明：<br />
+                1.打印时注意打印预览的参数；<br />
+                2.打印时不要勾选背景、页眉和页脚;<br />
+                3.当前模板对应纸张规格12.5*36cm。
             </div>
         </div>
     </div>
 
-
-
-
-    <!--通过iframe进行打印-->
-    <iframe id="iframe" name="iframeName" style="width: 460px;height: 1326px;display:none;"></iframe>
 </body>
 
 <script>
-    //354*2012,460*1326
 
-    //新窗口打印
-    var btn = document.getElementById("btn");
-    btn.onclick = function () {
-        var newWindow = window.open('', '_blank', 'width=1,height=1,top=10000,left=10000');
-        var html = document.getElementById("inner").innerHTML;// 这里的html可由别处传参，也可自己去接口获取
-        newWindow.document.write(html);
-        newWindow.document.close();
-        newWindow.print();
-        newWindow.close();
-    };
+    //A4纸的尺寸是210mm*297mm，也就是21.0cm*29.7cm，而1英寸=2.54cm，如果屏幕DPI分辨率为72像素/英寸，换算一下：相当于1cm可呈现 (72px/2.54cm) = 28.34px
+    //一般72dpi下1cm=28.34px，96dpi下1cm=37.79px
+    //12.5*36cm，网页是96dpi，354*2012,缩放1.3倍是460*1326，472.375*1360.44
+
+
 
     //切换背景
-    function bgImg(num) {
+    function switchBgImg(num) {
+
+        switch (num) {
+            case 0:
+                document.getElementById("contentPanel").style.backgroundImage = "url()";
+                break;
+            case 1:
+                document.getElementById("contentPanel").style.backgroundImage = "url(../MemorialTabletPrint/images/chaodu1.png)";
+                break;
+            case 2:
+                document.getElementById("contentPanel").style.backgroundImage = "url(../MemorialTabletPrint/images/chaodu2.png)";
+                break;
+            default:
+                break;
+        }
+
+    }
+
+
+
+
+    //阳上人文本监听
+    function ysrNameOnInput() {
+        document.getElementById("ysrName").innerText = document.getElementById("ysrNameInput").value;
+    }
+
+    //阳上人文本的字体大小
+    function ysrSizeOnInput() {
+        var size = document.getElementById("ysrSizeInput").value;
+        document.getElementById("ysrName").style.fontSize = size + "px";
+    }
+
+    //显示陽上和敬薦
+    function switchYsr(num) {
         if (num == 0) {
-            document.getElementById("bgDiv").style.backgroundImage = "";
+            document.getElementById("ysrTopPart").style.visibility = "hidden";
+            document.getElementById("ysrBottomPart").style.visibility = "hidden";
         } else {
-            document.getElementById("bgDiv").style.backgroundImage = "url(../MemorialTabletPrint/images/chaodu.png)";
+            document.getElementById("ysrTopPart").style.visibility = "visible";
+            document.getElementById("ysrBottomPart").style.visibility = "visible";
         }
     }
 
-    //阳上人文本监听
-    function yangshangrenOnInput() {
-        var textStr = document.getElementById("yangshangrenText").value;
-        document.getElementById("yangshangren").innerText = textStr;
-    }
-    //阳上人文本的字体大小
-    function yangshangrenFixFontSize() {
-        var textFontSize = document.getElementById("yangshangrenFontSize").value;
-        document.getElementById("yangshangren").style.fontSize = textFontSize + "px";
-    }
-
-
     //中间人文本监听
-    function nameOnInput(num) {
-        var textStr = document.getElementById("nameText" + num).value;
-        document.getElementById("name" + num).innerText = textStr;
+    function nameColumnOnInput(num) {
+        document.getElementById("nameColumn" + num).innerText = document.getElementById("nameColumnInput" + num).value;
+
     }
     //中间人文本的字体大小
-    function zhongjianrenFixFontSize(num) {
-        var textFontSize = document.getElementById("zhongjianrenFontSize" + num).value;
-        document.getElementById("name" + num).style.fontSize = textFontSize + "px";
+    function nameColumnSizeOnInput(num) {
+        var textFontSize = document.getElementById("nameColumnSizeInput" + num).value;
+        document.getElementById("nameColumn" + num).style.fontSize = textFontSize + "px";
     }
 
 
     //地址文本监听
     function addrOnInput() {
-        var textStr = document.getElementById("addrText").value;
+        var textStr = document.getElementById("addrInput").value;
         document.getElementById("addr").innerText = textStr;
     }
     //地址文本的字体大小
-    function addrFixFontSize() {
-        var textFontSize = document.getElementById("addrFontSize").value;
+    function addrSizeOnInput() {
+        var textFontSize = document.getElementById("addrSizeInput").value;
         document.getElementById("addr").style.fontSize = textFontSize + "px";
     }
 
-    //打印
-    function iframePrint() {
-        var printHtml = document.getElementById("inner").innerHTML;
-        document.getElementById("iframe").contentDocument.body.innerHTML = printHtml;
-        window.frames["iframeName"].print();
-    }
+
 
 </script>
 
