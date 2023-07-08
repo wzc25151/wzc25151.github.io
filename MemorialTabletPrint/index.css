@@ -1,5 +1,6 @@
 #container {
     width: 1000px;
+    min-width: 1000px;
 }
 
 #contentPanel {
@@ -84,7 +85,7 @@
     line-height: 56px;
 }
 
-#familyPart{
+#familyPart {
     width: 100%;
     writing-mode: vertical-lr;
     text-align: center;
@@ -128,10 +129,28 @@
 #consolePanel {
     float: left;
     font-size: 20px;
-    padding-top: 50px;
-    padding-left: 50px;
+    margin: 32px;
 }
 
-.option{
-    margin-top: 10px;
+.option {
+    margin-top: 16px;
+}
+
+/*选中;*/
+.selected {
+    border: 1px solid #e3393c;
+    cursor: pointer;
+    padding: 0px 4px;
+}
+
+/*未选中*/
+.unSelected {
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 0px 4px;
+}
+
+
+#illustrate {
+    font-size: 14px;
 }

@@ -43,11 +43,17 @@
             控制台
 
             <div class="option">
+                牌位纸规格
+                <span class="selected">12.5*36cm</span>
+
+            </div>
+
+            <div id="bgImgOption" class="option">
                 参照背景
-                <input type="radio" onclick="switchBgImg(0)" name="参照背景" value="无">无
-                <input type="radio" onclick="switchBgImg(1)" name="参照背景" checked="checked" value="超度1">超度1
-                <input type="radio" onclick="switchBgImg(2)" name="参照背景" value="超度2">超度2
-                <!--                <input type="radio" name="参照背景" value=祈福">祈福                -->
+                <span id="bgImg0" class="unSelected" onclick="switchBgImg(0)">无</span>
+                <span id="bgImg1" class="selected" onclick="switchBgImg(1)">超度1</span>
+                <span id="bgImg2" class="unSelected" onclick="switchBgImg(2)">超度2</span>
+
             </div>
 
             <div class="option">
@@ -59,8 +65,8 @@
                 </div>
                 <div>
                     显示陽上和敬薦
-                    <input type="radio" onclick="switchYsr(0)" name="显示陽上和敬薦" value="否">否
-                    <input type="radio" onclick="switchYsr(1)" name="显示陽上和敬薦" checked="checked" value="是">是
+                    <span id="ysrShowTip0" class="unSelected" onclick="switchYsr(0)">否</span>
+                    <span id="ysrShowTip1" class="selected" onclick="switchYsr(1)">是</span>
                 </div>
             </div>
 
@@ -113,18 +119,19 @@
             合家，勾选框
             -->
             <div class="option">
-
-
-
                 <button onclick="window.print()">打印</button>
             </div>
 
-            <div class="option">
-
+            <div id="illustrate" class="option">
                 一些说明：<br />
-                1.打印时注意打印预览的参数；<br />
-                2.打印时不要勾选背景、页眉和页脚;<br />
-                3.当前模板对应纸张规格12.5*36cm。
+                1.打印时检查打印预览的参数，注意预览中是否有留白；<br />
+                2.打印时不要勾选背景、页眉和页脚，页边距为0;<br />
+                3.调整好打印机卡槽对应纸张规格和纸张方向。
+
+
+                <br />
+                <br />
+                联系微信wzc25151
             </div>
         </div>
     </div>
@@ -141,6 +148,14 @@
 
     //切换背景
     function switchBgImg(num) {
+
+
+
+        var spanList = document.getElementById("bgImgOption").getElementsByTagName("span");
+        for (var i = 0; i < spanList.length; i++) {
+            spanList[i].className = "unSelected";
+        }
+        document.getElementById("bgImg" + num).className = "selected";
 
         switch (num) {
             case 0:
@@ -174,12 +189,18 @@
 
     //显示陽上和敬薦
     function switchYsr(num) {
+
+
         if (num == 0) {
             document.getElementById("ysrTopPart").style.visibility = "hidden";
             document.getElementById("ysrBottomPart").style.visibility = "hidden";
+            document.getElementById("ysrShowTip0").className = "selected";
+            document.getElementById("ysrShowTip1").className = "unSelected";
         } else {
             document.getElementById("ysrTopPart").style.visibility = "visible";
             document.getElementById("ysrBottomPart").style.visibility = "visible";
+            document.getElementById("ysrShowTip0").className = "unSelected";
+            document.getElementById("ysrShowTip1").className = "selected";
         }
     }
 
