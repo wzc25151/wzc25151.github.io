@@ -58,53 +58,60 @@
 
             <div class="option">
                 <div>
-                    阳上人
-                    <input id="ysrNameInput" type="text" oninput="ysrNameOnInput()" size="10" value="阳上人名字" />
+                    阳上前缀
+                    <input id="ysrTopInput" type="text" oninput="ysrTopOnInput()" size="10" value="陽上" />
+                    字体
+                    <input id="ysrTopSizeInput" type="text" oninput="ysrTopSizeOnInput()" size="10" value="38" />
+                </div>
+                <div>
+                    阳上人名
+                    <input id="ysrNameInput" type="text" oninput="ysrNameOnInput()" size="10" value="名字" />
                     字体
                     <input id="ysrSizeInput" type="text" oninput="ysrSizeOnInput()" size="10" value="32" />
                 </div>
                 <div>
-                    显示陽上和敬薦
-                    <span id="ysrShowTip0" class="unSelected" onclick="switchYsr(0)">否</span>
-                    <span id="ysrShowTip1" class="selected" onclick="switchYsr(1)">是</span>
+                    阳上后缀
+                    <input id="ysrBottomInput" type="text" oninput="ysrBottomOnInput()" size="10" value="敬薦" />
+                    字体
+                    <input id="ysrBottomSizeInput" type="text" oninput="ysrBottomSizeOnInput()" size="10" value="38" />
                 </div>
             </div>
 
-            <div class="option">
+            <div id="nameColumnOption" class="option">
                 <div>
                     牌主1
                     <input id="nameColumnInput1" type="text" oninput="nameColumnOnInput(1)" size="10" value="列1" />
                     字体
                     <input id="nameColumnSizeInput1" type="text" oninput="nameColumnSizeOnInput(1)" size="10"
-                        value="32" />
+                        value="36" />
                 </div>
                 <div>
                     牌主2
                     <input id="nameColumnInput2" type="text" oninput="nameColumnOnInput(2)" size="10" value="列2" />
                     字体
                     <input id="nameColumnSizeInput2" type="text" oninput="nameColumnSizeOnInput(2)" size="10"
-                        value="32" />
+                        value="36" />
                 </div>
                 <div>
                     牌主3
                     <input id="nameColumnInput3" type="text" oninput="nameColumnOnInput(3)" size="10" value="列3" />
                     字体
                     <input id="nameColumnSizeInput3" type="text" oninput="nameColumnSizeOnInput(3)" size="10"
-                        value="32" />
+                        value="36" />
                 </div>
                 <div>
                     牌主4
                     <input id="nameColumnInput4" type="text" oninput="nameColumnOnInput(4)" size="10" value="列4" />
                     字体
                     <input id="nameColumnSizeInput4" type="text" oninput="nameColumnSizeOnInput(4)" size="10"
-                        value="32" />
+                        value="36" />
                 </div>
                 <div>
                     牌主5
                     <input id="nameColumnInput5" type="text" oninput="nameColumnOnInput(5)" size="10" value="列5" />
                     字体
                     <input id="nameColumnSizeInput5" type="text" oninput="nameColumnSizeOnInput(5)" size="10"
-                        value="32" />
+                        value="36" />
                 </div>
             </div>
 
@@ -120,6 +127,7 @@
             -->
             <div class="option">
                 <button onclick="window.print()">打印</button>
+                <button onclick="clearNameAddr()">清空名字和地址</button>
             </div>
 
             <div id="illustrate" class="option">
@@ -151,9 +159,9 @@
 
 
 
-        var spanList = document.getElementById("bgImgOption").getElementsByTagName("span");
-        for (var i = 0; i < spanList.length; i++) {
-            spanList[i].className = "unSelected";
+        var bgImgList = document.getElementById("bgImgOption").getElementsByTagName("span");
+        for (var i = 0; i < bgImgList.length; i++) {
+            bgImgList[i].className = "unSelected";
         }
         document.getElementById("bgImg" + num).className = "selected";
 
@@ -174,7 +182,16 @@
     }
 
 
+    //阳上人前缀文本监听
+    function ysrTopOnInput() {
+        document.getElementById("ysrTopPart").innerText = document.getElementById("ysrTopInput").value;
+    }
 
+    //阳上人前缀文本的字体大小
+    function ysrTopSizeOnInput() {
+        var size = document.getElementById("ysrTopSizeInput").value;
+        document.getElementById("ysrTopPart").style.fontSize = size + "px";
+    }
 
     //阳上人文本监听
     function ysrNameOnInput() {
@@ -187,22 +204,18 @@
         document.getElementById("ysrName").style.fontSize = size + "px";
     }
 
-    //显示陽上和敬薦
-    function switchYsr(num) {
-
-
-        if (num == 0) {
-            document.getElementById("ysrTopPart").style.visibility = "hidden";
-            document.getElementById("ysrBottomPart").style.visibility = "hidden";
-            document.getElementById("ysrShowTip0").className = "selected";
-            document.getElementById("ysrShowTip1").className = "unSelected";
-        } else {
-            document.getElementById("ysrTopPart").style.visibility = "visible";
-            document.getElementById("ysrBottomPart").style.visibility = "visible";
-            document.getElementById("ysrShowTip0").className = "unSelected";
-            document.getElementById("ysrShowTip1").className = "selected";
-        }
+    //阳上人后缀文本监听
+    function ysrBottomOnInput() {
+        document.getElementById("ysrBottomPart").innerText = document.getElementById("ysrBottomInput").value;
     }
+
+    //阳上人后缀文本的字体大小
+    function ysrBottomSizeOnInput() {
+        var size = document.getElementById("ysrBottomSizeInput").value;
+        document.getElementById("ysrBottomPart").style.fontSize = size + "px";
+    }
+
+
 
     //中间人文本监听
     function nameColumnOnInput(num) {
@@ -227,6 +240,23 @@
         document.getElementById("addr").style.fontSize = textFontSize + "px";
     }
 
+    //清空名字和地址
+    function clearNameAddr() {
+        document.getElementById("ysrNameInput").value = '';
+        ysrNameOnInput();
+
+
+        var nameColumnList = document.getElementById("nameColumnOption").getElementsByTagName("div");
+        for (var i = 0; i < nameColumnList.length; i++) {
+            var input = nameColumnList[i].getElementsByTagName("Input");
+            input[0].value = "";
+            nameColumnOnInput(i + 1);
+        }
+
+        document.getElementById("addrInput").value = '';
+        addrOnInput();
+
+    }
 
 
 </script>
